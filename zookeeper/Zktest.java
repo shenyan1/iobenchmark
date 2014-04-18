@@ -15,6 +15,8 @@ public class Zktest {
                 System.out.println("已经触发了" + event.getType() + "事件！");
             }
         });
+
+   Thread.sleep(60000);
  // 创建一个目录节点
  zk.create("/testRootPath", "testRootData".getBytes(), Ids.OPEN_ACL_UNSAFE,
    CreateMode.PERSISTENT);
