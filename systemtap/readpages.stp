@@ -1,0 +1,14 @@
+/* This stp catch mmap when pagefault happened.
+ * the member index<<PAGE_CACHE_SHIFT is the offset of the file aligned by 4KB.
+ */
+#! /usr/bin/env stap
+probe module("btrfs").function("extent_read_full_page"){
+   print_backtrace();
+
+}
+probe module("btrfs").function("__extent_read_full_page")
+{
+
+   printf("mmap readpages inode=%d off=%d\n",$page->mapping->host->i_ino,$page->index*4096);
+
+}
